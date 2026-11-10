@@ -1,0 +1,31 @@
+# --- Node / Next.js ---
+node_modules/
+.next/
+out/
+build/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Trained model duplicates (the deployable copy lives in backend/app/models_artifact) ---
+ml/artifacts/
+
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+
+# --- Tooling / OS ---
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# --- Editor ---
+.vscode/
+.idea/

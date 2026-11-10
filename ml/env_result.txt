@@ -1,0 +1,10 @@
+pandas: OK
+numpy: OK
+sklearn: OK
+xgboost: MISSING (No module named 'xgboost')
+lightgbm: MISSING (No module named 'lightgbm')
+shap: MISSING (No module named 'shap')
+fastapi: OK
+uvicorn: OK
+joblib: OK
+imblearn: MISSING (No module named 'imblearn')

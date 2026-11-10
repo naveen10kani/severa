@@ -1,0 +1,41 @@
+# Render Blueprint — SEVERA Emergency Command Center
+# Docs: https://render.com/docs/blueprint-spec
+#
+# Creates two web services:
+#   1. severa-api       -> FastAPI + Random Forest inference (Python)
+#   2. severa-frontend  -> Next.js command center (Node)
+#
+# Deploy path: push this repo to GitHub -> Render -> New -> Blueprint -> select repo.
+
+services:
+  # ---------------- Machine-learning API ----------------
+  - type: web
+    name: severa-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.6
+      # Makes the API reachable from the frontend service (CORS is already open)
+      - key: CORS_ALLOW_ORIGIN
+        value: "*"
+
+  # ---------------- Next.js command center ----------------
+  - type: web
+    name: severa-frontend
+    runtime: node
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      # Inlined into the bundle at build time — must match the API service URL.
+      # Render gives every service the domain https://<service-name>.onrender.com
+      - key: NEXT_PUBLIC_API_URL
+        value: https://severa-api.onrender.com

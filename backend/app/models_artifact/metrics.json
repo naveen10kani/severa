@@ -1,0 +1,221 @@
+{
+  "best_model": "Random Forest (Recall-Tuned)",
+  "models": {
+    "Random Forest (Recall-Tuned)": {
+      "accuracy": 0.4069,
+      "macro_f1": 0.297,
+      "roc_auc": 0.5893,
+      "confusion_matrix": [
+        [
+          2291,
+          0,
+          3878
+        ],
+        [
+          436,
+          0,
+          1311
+        ],
+        [
+          305,
+          1,
+          1778
+        ]
+      ],
+      "per_class": {
+        "Slight": {
+          "precision": 0.7556,
+          "recall": 0.3714,
+          "f1": 0.498
+        },
+        "Serious": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "Fatal": {
+          "precision": 0.2552,
+          "recall": 0.8532,
+          "f1": 0.3929
+        }
+      },
+      "fatal_recall": 0.8532,
+      "fatal_f1": 0.3929
+    },
+    "XGBoost (SMOTE)": {
+      "accuracy": 0.6035,
+      "macro_f1": 0.3114,
+      "roc_auc": 0.5876,
+      "confusion_matrix": [
+        [
+          5777,
+          17,
+          375
+        ],
+        [
+          1584,
+          4,
+          159
+        ],
+        [
+          1818,
+          12,
+          254
+        ]
+      ],
+      "per_class": {
+        "Slight": {
+          "precision": 0.6294,
+          "recall": 0.9365,
+          "f1": 0.7528
+        },
+        "Serious": {
+          "precision": 0.1212,
+          "recall": 0.0023,
+          "f1": 0.0045
+        },
+        "Fatal": {
+          "precision": 0.3223,
+          "recall": 0.1219,
+          "f1": 0.1769
+        }
+      },
+      "fatal_recall": 0.1219,
+      "fatal_f1": 0.1769
+    },
+    "LightGBM": {
+      "accuracy": 0.459,
+      "macro_f1": 0.3847,
+      "roc_auc": 0.599,
+      "confusion_matrix": [
+        [
+          3143,
+          965,
+          2061
+        ],
+        [
+          656,
+          310,
+          781
+        ],
+        [
+          534,
+          413,
+          1137
+        ]
+      ],
+      "per_class": {
+        "Slight": {
+          "precision": 0.7254,
+          "recall": 0.5095,
+          "f1": 0.5986
+        },
+        "Serious": {
+          "precision": 0.1836,
+          "recall": 0.1774,
+          "f1": 0.1805
+        },
+        "Fatal": {
+          "precision": 0.2858,
+          "recall": 0.5456,
+          "f1": 0.3751
+        }
+      },
+      "fatal_recall": 0.5456,
+      "fatal_f1": 0.3751
+    },
+    "Logistic Regression": {
+      "accuracy": 0.4922,
+      "macro_f1": 0.3926,
+      "roc_auc": 0.6109,
+      "confusion_matrix": [
+        [
+          3577,
+          718,
+          1874
+        ],
+        [
+          774,
+          234,
+          739
+        ],
+        [
+          691,
+          282,
+          1111
+        ]
+      ],
+      "per_class": {
+        "Slight": {
+          "precision": 0.7094,
+          "recall": 0.5798,
+          "f1": 0.6381
+        },
+        "Serious": {
+          "precision": 0.1896,
+          "recall": 0.1339,
+          "f1": 0.157
+        },
+        "Fatal": {
+          "precision": 0.2983,
+          "recall": 0.5331,
+          "f1": 0.3826
+        }
+      },
+      "fatal_recall": 0.5331,
+      "fatal_f1": 0.3826
+    }
+  },
+  "shap_importance": {
+    "is_night": 0.05444,
+    "vehicle_count": 0.04599,
+    "speed_limit": 0.03086,
+    "hour": 0.02482,
+    "weather_rain": 0.02205,
+    "weather_fog": 0.01229,
+    "is_rush_hour": 0.01044,
+    "light_condition_daylight": 0.01039,
+    "wet_and_high_speed": 0.01033,
+    "longitude": 0.00967,
+    "latitude": 0.00871,
+    "light_condition_twilight": 0.00597,
+    "road_type_residential": 0.00589,
+    "weather_snow": 0.004,
+    "road_type_rural": 0.00343
+  },
+  "feature_names": [
+    "weather_fog",
+    "weather_rain",
+    "weather_snow",
+    "weather_storm",
+    "road_type_primary",
+    "road_type_residential",
+    "road_type_rural",
+    "road_type_secondary",
+    "light_condition_dark-unlit",
+    "light_condition_daylight",
+    "light_condition_twilight",
+    "day_of_week_Monday",
+    "day_of_week_Saturday",
+    "day_of_week_Sunday",
+    "day_of_week_Thursday",
+    "day_of_week_Tuesday",
+    "day_of_week_Wednesday",
+    "speed_limit",
+    "vehicle_count",
+    "latitude",
+    "longitude",
+    "hour",
+    "is_weekend",
+    "is_rush_hour",
+    "is_night",
+    "wet_and_high_speed"
+  ],
+  "class_distribution": {
+    "Slight": 24266,
+    "Serious": 7260,
+    "Fatal": 8474
+  },
+  "explanation_rationale": "In emergency road accident response, optimizing for RECALL on Fatal accidents is paramount: a false negative (failing to identify a potentially fatal accident) results in catastrophic response delays, whereas a false positive (elevating a serious accident to fatal dispatch) only mobilizes precautionary emergency units.",
+  "evaluated_at": "2026-11-10T03:18:00.971766+00:00"
+}

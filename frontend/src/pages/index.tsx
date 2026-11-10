@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import React, { useState, useEffect, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { CommandHeader } from '../components/CommandHeader';
 import { RiskSimulator } from '../components/RiskSimulator';
 import { SeverityGauge } from '../components/SeverityGauge';
@@ -7,14 +7,18 @@ import { ShapExplainer } from '../components/ShapExplainer';
 import { AccidentPredictionInput, PredictionResponse } from '../lib/types';
 import { predictAccidentSeverity } from '../lib/api';
 import { ShieldAlert, Sliders, Activity, Brain, Siren, ChevronRight } from 'lucide-react';
-import { IncidentRadar } from '../components/IncidentRadar';
 
-// Simple hero banner component – replaces the 3D scene
-const HeroBanner = () => (
-  <div className="w-full h-[360px] lg:h-[460px] flex items-center justify-center bg-primary/60 rounded-xl text-white font-display text-3xl shadow-inner">
-    SEVERA – Road Accident Early‑Warning System
-  </div>
-);
+const Scene3D = dynamic(() => import('../components/Scene3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 glass-panel rounded-xl flex flex-col items-center justify-center gap-3">
+      <div className="w-10 h-10 rounded-full border-2 border-neon-cyan/30 border-t-neon-cyan animate-spin" />
+      <span className="font-mono text-[11px] tracking-[0.25em] text-neon-cyan/80 animate-pulse">
+        COMPILING 3D DIGITAL TWIN…
+      </span>
+    </div>
+  ),
+});
 
 type PresetKey = 'NIGHT_STORM' | 'RUSH_HOUR' | 'SAFE_URBAN';
 
